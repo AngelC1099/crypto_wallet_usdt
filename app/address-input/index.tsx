@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { isAddress } from "../utils/usdt-address";
 
-const AuthScreen = () => {
+const AddressInputScreen = () => {
   const [address, setAddress] = useState<string>("");
 
   const handleWalletNavigation = () => {
@@ -46,7 +46,7 @@ const AuthScreen = () => {
   );
 };
 
-export default AuthScreen;
+export default AddressInput;
 
 const styles = StyleSheet.create({
   container: {
