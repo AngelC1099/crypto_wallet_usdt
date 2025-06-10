@@ -3,8 +3,10 @@ import {
   CameraView,
   useCameraPermissions,
 } from "expo-camera";
+import { router } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { isAddress } from "../utils/usdt-address";
 
 const QRScannerScreen = () => {
   const [permission, requestPermission] = useCameraPermissions();
@@ -19,6 +21,14 @@ const QRScannerScreen = () => {
   const handleScan = (result: BarcodeScanningResult) => {
     if (!scanned) {
       setScanned(true);
+      if (isAddress(result.data)) {
+        router.replace({
+          pathname: "/wallet",
+          params: { address: result.data },
+        });
+      } else {
+        setError("Scan a valid USDT QR address.");
+      }
       setTimeout(() => {
         setScanned(false);
         setError(null);

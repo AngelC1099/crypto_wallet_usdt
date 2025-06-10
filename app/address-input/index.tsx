@@ -1,8 +1,21 @@
+import { router } from "expo-router";
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { isAddress } from "../utils/usdt-address";
 
 const AuthScreen = () => {
   const [address, setAddress] = useState<string>("");
+
+  const handleWalletNavigation = () => {
+    if (address.trim() === "" || !isAddress(address)) {
+      alert("Por favor, ingresa una dirección USDT válida.");
+      return;
+    }
+    router.push({
+      pathname: "/wallet",
+      params: { address },
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -15,6 +28,20 @@ const AuthScreen = () => {
         value={address}
         onChangeText={setAddress}
       />
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleWalletNavigation}
+        >
+          <Text style={styles.buttonText}>Get wallet</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, styles.secondaryButton]}
+          onPress={() => router.push("/qr-scanner")}
+        >
+          <Text style={styles.buttonText}>Scan QR</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
