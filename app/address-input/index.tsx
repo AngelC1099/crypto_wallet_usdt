@@ -1,7 +1,13 @@
 import { router } from "expo-router";
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { isAddress } from "../utils/usdt-address";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { isAddress } from "../../utils/usdt-address";
 
 const AddressInputScreen = () => {
   const [address, setAddress] = useState<string>("");
@@ -46,7 +52,7 @@ const AddressInputScreen = () => {
   );
 };
 
-export default AddressInput;
+export default AddressInputScreen;
 
 const styles = StyleSheet.create({
   container: {

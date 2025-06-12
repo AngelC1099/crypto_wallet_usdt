@@ -6,7 +6,7 @@ import {
 import { router } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { isAddress } from "../utils/usdt-address";
+import { isAddress } from "../../utils/usdt-address";
 
 const QRScannerScreen = () => {
   const [permission, requestPermission] = useCameraPermissions();
